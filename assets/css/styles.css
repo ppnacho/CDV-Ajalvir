@@ -1,22 +1,32 @@
 :root {
+    --max-width: 1160px;
+
     --bg: #06162a;
     --bg2: #08264a;
-    --surface: #0b2f5a;
-    --surface2: #0f5ead;
+    --surface: rgba(255, 255, 255, 0.06);
+    --surface2: rgba(255, 255, 255, 0.10);
 
     --text: #f8fafc;
+    --text-dark: #111827;
     --muted: #b7c4d6;
+    --muted-dark: #4b5563;
 
     --primary: #feda0a;
-    --primary2: #0f5ead;
+    --primary-dark: #0f5ead;
+    --primary-soft: rgba(254, 218, 10, 0.16);
+    --secondary: #0f5ead;
 
     --danger: #ff5a7a;
+    --danger-dark: #b91c1c;
     --warning: #feda0a;
 
-    --border: rgba(255, 255, 255, .14);
-    --shadow: 0 24px 70px rgba(0, 0, 0, .35);
+    --border: rgba(255, 255, 255, 0.14);
+    --border-yellow: rgba(254, 218, 10, 0.22);
+
+    --shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
     --radius: 24px;
 }
+
 * {
     box-sizing: border-box;
 }
@@ -28,11 +38,12 @@ html {
 body {
     margin: 0;
     font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-    background:
-        radial-gradient(circle at 20% 0%, rgba(15, 94, 173, .65) 0, transparent 34%),
-        linear-gradient(135deg, #06162a 0%, #08264a 45%, #020817 100%);
     color: var(--text);
     line-height: 1.6;
+    background:
+        radial-gradient(circle at 20% 0%, rgba(15, 94, 173, 0.65) 0, transparent 34%),
+        radial-gradient(circle at 80% 10%, rgba(254, 218, 10, 0.18) 0, transparent 28%),
+        linear-gradient(135deg, #06162a 0%, #08264a 45%, #020817 100%);
 }
 
 body.login-body {
@@ -40,7 +51,10 @@ body.login-body {
     display: grid;
     place-items: center;
     padding: 24px;
-    background: linear-gradient(135deg, #07111f, #0c2947);
+    background:
+        radial-gradient(circle at 20% 10%, rgba(254, 218, 10, 0.22), transparent 28%),
+        radial-gradient(circle at 80% 0%, rgba(15, 94, 173, 0.70), transparent 34%),
+        linear-gradient(135deg, #06162a, #020817);
 }
 
 a {
@@ -60,12 +74,14 @@ textarea {
     margin: auto;
 }
 
+/* CABECERA */
+
 .site-header {
     position: sticky;
     top: 0;
     z-index: 20;
-    background: rgba(7, 17, 31, 0.78);
-    border-bottom: 1px solid var(--border);
+    background: rgba(6, 22, 42, 0.86);
+    border-bottom: 1px solid var(--border-yellow);
     backdrop-filter: blur(18px);
 }
 
@@ -91,8 +107,26 @@ textarea {
     display: grid;
     place-items: center;
     border-radius: 14px;
-    color: #06111f;
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: #06162a;
+    background: linear-gradient(135deg, var(--primary), #fff176);
+}
+
+.brand-logo {
+    width: 52px;
+    height: 52px;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    border-radius: 50%;
+    background: #06162a;
+    border: 2px solid var(--primary);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.brand-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .nav-links {
@@ -105,7 +139,7 @@ textarea {
 
 .nav-links a:hover,
 .nav-links a.active {
-    color: var(--text);
+    color: var(--primary);
 }
 
 .nav-toggle {
@@ -116,6 +150,52 @@ textarea {
     font-size: 28px;
     cursor: pointer;
 }
+
+/* BOTONES */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 20px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+.btn-primary {
+    color: #06162a;
+    background: linear-gradient(135deg, var(--primary), #fff176);
+    border-color: transparent;
+}
+
+.btn-secondary {
+    color: var(--text);
+    background: rgba(15, 94, 173, 0.22);
+    border-color: rgba(254, 218, 10, 0.35);
+}
+
+.btn-danger,
+.btn-logout {
+    color: #ffffff;
+    background: var(--danger-dark);
+    border: 0;
+}
+
+.btn-logout {
+    padding: 0.65rem 1rem;
+    border-radius: 999px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.btn-danger:hover,
+.btn-logout:hover {
+    background: #991b1b;
+}
+
+/* HERO */
 
 .hero {
     padding: 84px 0 64px;
@@ -167,59 +247,17 @@ textarea {
     margin-top: 32px;
 }
 
-.btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 14px 20px;
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    font-weight: 900;
-    cursor: pointer;
-}
-
-.btn-primary {
-    color: #03110b;
-    background: var(--primary);
-    border-color: transparent;
-}
-
-.btn-secondary {
-    color: var(--text);
-    background: rgba(255, 255, 255, 0.07);
-}
-
-.btn-danger,
-.btn-logout {
-    color: #ffffff;
-    background: var(--danger-dark);
-    border: 0;
-}
-
-.btn-logout {
-    padding: 0.65rem 1rem;
-    border-radius: 999px;
-    font-weight: 800;
-    cursor: pointer;
-}
-
-.btn-danger:hover,
-.btn-logout:hover {
-    background: #991b1b;
-}
-
 .hero-card,
 .card,
-.side-panel,
-.login-card {
-    border: 1px solid var(--border);
+.side-panel {
+    border: 1px solid var(--border-yellow);
     border-radius: var(--radius);
+    background: var(--surface);
     box-shadow: 0 14px 40px rgba(0, 0, 0, 0.18);
 }
 
 .hero-card {
     padding: 18px;
-    background: rgba(255, 255, 255, 0.06);
     box-shadow: var(--shadow);
 }
 
@@ -230,14 +268,15 @@ textarea {
     justify-content: flex-end;
     padding: 28px;
     border-radius: 20px;
-    background: linear-gradient(145deg, rgba(0, 208, 132, 0.18), rgba(67, 230, 255, 0.12)),
-        linear-gradient(180deg, #17365b, #10233d);
+    background:
+        linear-gradient(145deg, rgba(254, 218, 10, 0.16), rgba(15, 94, 173, 0.35)),
+        linear-gradient(180deg, #0f5ead, #06162a);
 }
 
 .tag {
     align-self: flex-start;
     padding: 7px 12px;
-    border: 1px solid var(--border);
+    border: 1px solid var(--border-yellow);
     border-radius: 99px;
     background: rgba(255, 255, 255, 0.14);
     font-weight: 900;
@@ -275,6 +314,8 @@ textarea {
     font-size: 0.9rem;
 }
 
+/* SECCIONES */
+
 .section {
     padding: 72px 0;
 }
@@ -294,7 +335,6 @@ textarea {
 
 .card {
     padding: 28px;
-    background: rgba(255, 255, 255, 0.06);
 }
 
 .card .icon {
@@ -327,6 +367,8 @@ textarea {
     gap: 40px;
 }
 
+/* NOTICIAS */
+
 .news-list {
     display: grid;
     gap: 16px;
@@ -337,7 +379,7 @@ textarea {
     grid-template-columns: 82px 1fr;
     gap: 18px;
     padding: 20px;
-    border: 1px solid var(--border);
+    border: 1px solid var(--border-yellow);
     border-radius: 18px;
     background: rgba(255, 255, 255, 0.055);
 }
@@ -356,28 +398,7 @@ time {
     color: var(--muted);
 }
 
-.site-footer {
-    padding: 34px 0;
-    background: #050914;
-    border-top: 1px solid var(--border);
-}
-
-.footer-grid {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-}
-
-.footer-grid p {
-    margin: 0.3rem 0;
-    color: var(--muted);
-}
-
-.footer-grid div:last-child {
-    display: flex;
-    gap: 18px;
-    color: var(--muted);
-}
+/* PÁGINAS INTERNAS */
 
 .page-hero {
     padding: 56px 0 24px;
@@ -395,7 +416,6 @@ time {
     top: 98px;
     align-self: start;
     padding: 16px;
-    background: rgba(255, 255, 255, 0.06);
 }
 
 .side-panel a {
@@ -409,7 +429,7 @@ time {
 .side-panel a:hover,
 .side-panel a.active {
     color: var(--text);
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(254, 218, 10, 0.12);
 }
 
 .content-grid {
@@ -425,6 +445,13 @@ time {
 .metric {
     font-size: 2rem;
     font-weight: 900;
+}
+
+/* TABLAS */
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
 }
 
 .table {
@@ -467,6 +494,8 @@ time {
     color: var(--danger);
     background: rgba(255, 90, 122, 0.13);
 }
+
+/* FORMULARIOS */
 
 .form,
 .login-form {
@@ -514,25 +543,56 @@ textarea {
 .notice {
     padding: 16px 18px;
     color: var(--muted);
-    background: rgba(0, 208, 132, 0.08);
+    background: rgba(254, 218, 10, 0.10);
     border-left: 4px solid var(--primary);
     border-radius: 14px;
 }
 
+/* LOGIN */
+
 .login-card {
+    position: relative;
+    z-index: 1;
     width: min(460px, 92%);
     padding: 2rem;
     color: var(--text-dark);
     background: #ffffff;
+    border: 1px solid rgba(254, 218, 10, 0.40);
+    border-radius: var(--radius);
     box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+}
+
+.login-card::before {
+    content: "";
+    display: block;
+    width: 118px;
+    height: 118px;
+    margin: 0 auto 1.2rem;
+    background-image: url("../img/escudo-cdv-ajalvir.jpeg");
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    border: 3px solid var(--primary);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
+    pointer-events: none;
 }
 
 .login-card h1 {
     margin-top: 0;
+    text-align: center;
 }
 
 .login-card p {
-    color: #4b5563;
+    color: var(--muted-dark);
+    text-align: center;
+}
+
+.login-card form,
+.login-card input,
+.login-card button,
+.login-card label {
+    position: relative;
+    z-index: 2;
 }
 
 .login-card button,
@@ -541,16 +601,28 @@ textarea {
     padding: 0.9rem;
     border: 0;
     border-radius: 12px;
-    color: #ffffff;
-    background: var(--primary-dark);
+    color: #06162a;
+    background: linear-gradient(135deg, var(--primary), #fff176);
     font-weight: 900;
     cursor: pointer;
+}
+
+.login-card button:hover,
+.card button:hover {
+    filter: brightness(0.96);
 }
 
 .error {
     color: var(--danger-dark);
     font-weight: 800;
 }
+
+.success {
+    color: #0f766e;
+    font-weight: 800;
+}
+
+/* USUARIOS */
 
 .user-row {
     padding: 1rem 0;
@@ -562,6 +634,33 @@ textarea {
     gap: 10px;
     margin-top: 10px;
 }
+
+/* FOOTER */
+
+.site-footer {
+    padding: 34px 0;
+    background: #050914;
+    border-top: 1px solid var(--border-yellow);
+}
+
+.footer-grid {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.footer-grid p {
+    margin: 0.3rem 0;
+    color: var(--muted);
+}
+
+.footer-grid div:last-child {
+    display: flex;
+    gap: 18px;
+    color: var(--muted);
+}
+
+/* ANIMACIONES */
 
 .reveal {
     animation: fadeUp 0.7s ease both;
@@ -587,6 +686,8 @@ textarea {
     }
 }
 
+/* RESPONSIVE */
+
 @media (max-width: 840px) {
     .nav-toggle {
         display: block;
@@ -601,9 +702,9 @@ textarea {
         flex-direction: column;
         align-items: flex-start;
         padding: 18px;
-        border: 1px solid var(--border);
+        border: 1px solid var(--border-yellow);
         border-radius: 18px;
-        background: #0b1829;
+        background: #06162a;
     }
 
     .nav-links.open {
@@ -631,107 +732,5 @@ textarea {
 
     .footer-grid div:last-child {
         flex-wrap: wrap;
-    }
-
-    .brand-logo {
-        width: 52px;
-        height: 52px;
-        display: grid;
-        place-items: center;
-        overflow: hidden;
-        border-radius: 50%;
-        background: #06162a;
-        border: 2px solid var(--primary);
-        box-shadow: 0 8px 24px rgba(0, 0, 0, .25);
-    }
-
-    .brand-logo img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    .brand-mark {
-        background: linear-gradient(135deg, var(--primary), #fff176);
-        color: #06162a;
-    }
-
-    .btn-primary {
-        background: linear-gradient(135deg, var(--primary), #fff176);
-        color: #06162a;
-        border-color: transparent;
-    }
-
-    .btn-secondary {
-        background: rgba(15, 94, 173, .22);
-        color: var(--text);
-        border-color: rgba(254, 218, 10, .35);
-    }
-
-    .card {
-        border-color: rgba(254, 218, 10, .16);
-    }
-
-    .site-header {
-        background: rgba(6, 22, 42, .84);
-        border-bottom: 1px solid rgba(254, 218, 10, .18);
-    }
-
-    .nav-links a:hover,
-    .nav-links a.active {
-        color: var(--primary);
-    }
-
-    .status {
-        background: rgba(254, 218, 10, .16);
-        color: var(--primary);
-    }
-
-    .table th {
-        color: var(--primary);
-    }
-
-    .notice {
-        border-left: 4px solid var(--primary);
-        background: rgba(254, 218, 10, .10);
-    }
-
-    .login-body {
-        background:
-            radial-gradient(circle at 20% 10%, rgba(254, 218, 10, .20), transparent 28%),
-            radial-gradient(circle at 80% 0%, rgba(15, 94, 173, .65), transparent 34%),
-            linear-gradient(135deg, #06162a, #020817);
-    }
-
-    .login-card::before {
-        content: "";
-        display: block;
-        width: 110px;
-        height: 110px;
-        margin: 0 auto 1.2rem;
-        background-image: url("../img/escudo-cdv-ajalvir.jpg");
-        background-size: cover;
-        background-position: center;
-        border-radius: 50%;
-        border: 3px solid #feda0a;
-        box-shadow: 0 12px 32px rgba(0, 0, 0, .28);
-        pointer-events: none;
-    }
-
-    .login-card {
-        position: relative;
-        z-index: 1;
-    }
-
-    .login-card::before {
-        pointer-events: none;
-    }
-
-    .login-card form,
-    .login-card input,
-    .login-card button,
-    .login-card label {
-        position: relative;
-        z-index: 2;
     }
 }
