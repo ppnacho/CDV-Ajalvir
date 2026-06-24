@@ -43,7 +43,10 @@
                     document.getElementById("password").value
                 );
 
-                if (usuario.rol === "directiva") {
+                if (usuario.rol === "administrador") {
+                    window.location.href = "directiva/usuarios.html";
+                }
+                else if (usuario.rol === "directiva") {
                     window.location.href = "directiva/index.html";
                 } else {
                     window.location.href = "socios/index.html";
