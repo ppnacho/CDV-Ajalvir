@@ -12,7 +12,7 @@ import {
 function idSocioToEmail(idSocio) {
     return String(idSocio || "")
         .trim()
-        .toUpperCase()
+        .toLowerCase()
         .replace(/\s+/g, "") + "@cdv-ajalvir.local";
 }
 
