@@ -20,7 +20,7 @@ export async function loginConIdSocio(idSocio, password) {
     const email = idSocioToEmail(idSocio);
     const cred = await signInWithEmailAndPassword(auth, email, password);
 
-    const ref = doc(db, "usuarios", cred.user.uid);
+    const ref = doc(db, "socios", cred.user.uid);
     const snap = await getDoc(ref);
 
     if (!snap.exists()) {
@@ -66,7 +66,7 @@ export function protegerPagina(rolNecesario = "socio", callback) {
             return;
         }
 
-        const ref = doc(db, "usuarios", user.uid);
+        const ref = doc(db, "socios", user.uid);
         const snap = await getDoc(ref);
 
         if (!snap.exists()) {
