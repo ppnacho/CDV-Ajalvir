@@ -44,7 +44,8 @@
                 else if (usuario.rol === "directiva") window.location.href = "directiva/index.html";
                 else window.location.href = "socios/index.html";
             } catch (err) {
-                error.textContent = "ID de socio o contraseña incorrectos, usuario no activo o sin permisos.";
+                console.error(err);
+                error.textContent = err.code ? `${err.code}: ${err.message}` : err.message;
             }
         });
     </script>
